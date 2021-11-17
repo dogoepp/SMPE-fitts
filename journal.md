@@ -43,7 +43,7 @@ On this Webpage, one can gather data for controlled 1D user pointing experiments
 I run the experiment from the above Webpage with 1, 2 and 4 widths and with 16, 32 and 64 distances, with 6 trials for each combination. 
 
 The Webpage returned:
-- I had 4 errors
-- a modelling in the form of _MT_ = 1001.293 + 140.589 × log(A/W + 1) with R2 = 0.218
-- the [table of mean _MT_](./data/20211117_1527_MeanMT.csv) in the [data folder](./data/)
-- the [table of raw pointing data](./data/20211117_1527_RawData.csv) in [data folder](./data/)
+- I performed 4 errors
+- A Fitts modelling in the form of _MT_ = 1001.293 + 140.589 × log(A/W + 1) with R2 = 0.218
+- The [table of mean _MT_](./data/20211117_1527_MeanMT.csv) in the [data folder](./data/)
+- The [table of raw pointing data](./data/20211117_1527_RawData.csv) in [data folder](./data/)
