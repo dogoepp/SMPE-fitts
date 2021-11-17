@@ -2,4 +2,4 @@
 
 This small project aims at teaching 2nd year master students how to improve their experimental methodology.
 
-The journal contains all information and experimental reports.
+The [journal](./journal.md) contains all information and experimental reports.
