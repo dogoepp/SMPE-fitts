@@ -11,13 +11,15 @@ The time (_MT_: movement time) needed for a user to acquire a target is linearly
 
 > _MT_ = a + b × _ID_
 
+A large part of Human-Computer Interaction research since then builds on top of Fitts' law.
+
 This project aims at finding the values of the _a_ and _b_ parameters. This document contains my attempts to experimentally find _a_ and _b_ parameters.
 
 ## General Organization
 
 ### data/
 
-This folders both raw and processed experimental data that is returned from the experiment. 
+This folders contains both raw and processed experimental data that is returned from the experiment. 
 Each file name is named after the following format: `YYYYMMDD_HHMM_<data>` where `<data>` is either:
 - `RawData`, i.e. the raw data  as returned from the experiment. 
 - `MeanMT`, i.e. the processed mean movement times as returned from the experiment. 
@@ -42,8 +44,14 @@ On this Webpage, one can gather data for controlled 1D user pointing experiments
 
 I run the experiment from the above Webpage with 1, 2 and 4 widths and with 16, 32 and 64 distances, with 6 trials for each combination. 
 
+#### Data collected
+
 The Webpage returned:
 - I performed 4 errors
 - A Fitts modelling in the form of _MT_ = 1001.293 + 140.589 × log(A/W + 1) with R2 = 0.218
 - The [table of mean _MT_](./data/20211117_1527_MeanMT.csv) in the [data folder](./data/)
 - The [table of raw pointing data](./data/20211117_1527_RawData.csv) in [data folder](./data/)
+
+#### Data analysis
+
+My data analysis is performed and commented in the [pointingAnalysis.Rmd file](./analysis/pointingAnalysis.Rmd) (R markdown file). 
