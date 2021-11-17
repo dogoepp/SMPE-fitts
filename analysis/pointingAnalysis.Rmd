@@ -18,11 +18,11 @@ library(ggplot2)
 ## Loading data
 
 ```{r loading csv data into a dataframe}
-meanMTdf <- read.csv("../data/20211117_1527_MeanMT.csv",header=T)
-rawdf <- read.csv("../data/20211117_1527_RawData.csv",header=T)
+meanMTdf <- read.csv("../data/20211117_1527_MeanMT.csv", header=T)
+rawdf <- read.csv("../data/20211117_1527_RawData.csv", header=T)
 ```
 
-## Plotting the raw data together with the linear regression
+## Plotting the data together with the linear regression
 
 ```{r Plotting the raw data together with the linear regression}
 ggplot(meanMTdf, aes(ID, MT)) +
@@ -32,7 +32,7 @@ ggplot(meanMTdf, aes(ID, MT)) +
 ## Linear modelling
 
 ```{r linear modeling}
-model <- lm(MT~ID, data=meanMTdf)
+model <- lm(MT~ID, data = meanMTdf)
 summary(model)
 ```
 
