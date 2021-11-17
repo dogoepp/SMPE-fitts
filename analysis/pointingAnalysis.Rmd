@@ -25,14 +25,16 @@ rawdf <- read.csv("../data/20211117_1527_RawData.csv",header=T)
 ## Plotting the raw data together with the linear regression
 
 ```{r Plotting the raw data together with the linear regression}
-ggplot(rawdf, aes(ID, MT)) +
+ggplot(meanMTdf, aes(ID, MT)) +
   geom_point() +
   geom_smooth(method='lm')
 ```
-
 ## Linear modelling
 
 ```{r linear modeling}
-model <- lm(MT~ID, data=rawdf)
+model <- lm(MT~ID, data=meanMTdf)
 summary(model)
 ```
+
+Weirdly, in contrast to what Fitts' law says, ID does not seem to have an impact on the movement time. 
+Also, the R2=0.218 reported by the [experimental software](http://ergo.human.cornell.edu/FittsLaw/FittsLaw.html) and the R2=0.008146 I find here, are different. 
