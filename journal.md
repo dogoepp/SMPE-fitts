@@ -19,10 +19,10 @@ This project aims at finding the values of the _a_ and _b_ parameters. This docu
 
 ### data/
 
-This folder contains both raw and processed experimental data that is returned from the experiment. 
+This folder contains both raw and processed experimental data that is returned from the experimental software. 
 Each file name is named after the following format: `YYYYMMDD_HHMM_<data>` where `<data>` is either:
-- `RawData`, i.e. the raw data  as returned from the experiment. 
-- `MeanMT`, i.e. the processed mean movement times as returned from the experiment. 
+- `RawData`, i.e. the raw data  as returned from the experimental software. 
+- `MeanMT`, i.e. the processed mean movement times as returned from the experimental software. 
 
 ### analysis/
 
@@ -42,15 +42,15 @@ On this Webpage, one can gather data for controlled 1D user pointing experiments
 
 #### Experimental variables
 
-I run the experiment from the above Webpage with 1, 2 and 4 widths and with 16, 32 and 64 distances, with 6 trials for each combination. 
+I ran the experiment from the above Webpage with 1, 2 and 4 widths and with 16, 32 and 64 distances, with 6 trials for each combination. 
 
 #### Data collected
 
-The Webpage returned:
-- I performed 4 errors
+The Webpage returned the following results:
+- I performed 4 pointing errors
 - A Fitts modelling in the form of _MT_ = 1001.293 + 140.589 × log(A/W + 1) with R2 = 0.218
-- The [table of mean _MT_](./data/20211117_1527_MeanMT.csv) in the [data folder](./data/)
-- The [table of raw pointing data](./data/20211117_1527_RawData.csv) in [data folder](./data/)
+- The [table of mean _MT_](./data/20211117_1527_MeanMT.csv) that I provide in the [data folder](./data/)
+- The [table of raw pointing data](./data/20211117_1527_RawData.csv) that I provide in [data folder](./data/)
 
 #### Data analysis
 
