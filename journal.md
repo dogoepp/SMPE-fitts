@@ -45,5 +45,5 @@ I run the experiment from the above Webpage with 1, 2 and 4 widths and with 16, 
 The Webpage returned:
 - I had 4 errors
 - a modelling in the form of _MT_ = 1001.293 + 140.589 × log(A/W + 1) with R2 = 0.218
-- the table of mean _MT_ in the [data folder](./data/)
-- the table of raw pointing data in [data folder](./data/)
+- the [table of mean _MT_](./data/20211117_1527_MeanMT.csv) in the [data folder](./data/)
+- the [table of raw pointing data](./data/20211117_1527_RawData.csv) in [data folder](./data/)
