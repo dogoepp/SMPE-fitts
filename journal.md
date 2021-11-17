@@ -19,7 +19,7 @@ This project aims at finding the values of the _a_ and _b_ parameters. This docu
 
 ### data/
 
-This folders contains both raw and processed experimental data that is returned from the experiment. 
+This folder contains both raw and processed experimental data that is returned from the experiment. 
 Each file name is named after the following format: `YYYYMMDD_HHMM_<data>` where `<data>` is either:
 - `RawData`, i.e. the raw data  as returned from the experiment. 
 - `MeanMT`, i.e. the processed mean movement times as returned from the experiment. 
