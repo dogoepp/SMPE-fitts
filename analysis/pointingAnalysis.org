@@ -13,6 +13,15 @@ library(tidyverse)
 #+end_src
 
 #+RESULTS:
+: 
+: ── [1mAttaching packages[22m ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.2 ──
+: [32m✔[39m [34mtibble [39m 3.1.6     [32m✔[39m [34mdplyr  [39m 1.0.8
+: [32m✔[39m [34mtidyr  [39m 1.2.0     [32m✔[39m [34mstringr[39m 1.4.0
+: [32m✔[39m [34mreadr  [39m 2.1.3     [32m✔[39m [34mforcats[39m 0.5.2
+: [32m✔[39m [34mpurrr  [39m 0.3.4     
+: ── [1mConflicts[22m ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+: [31m✖[39m [34mdplyr[39m::[32mfilter()[39m masks [34mstats[39m::filter()
+: [31m✖[39m [34mdplyr[39m::[32mlag()[39m    masks [34mstats[39m::lag()
 
 * first analysys
 ** Loading data
@@ -70,42 +79,50 @@ summary(model)
  Also, the R2=0.218 reported by the [experimental software](http://ergo.human.cornell.edu/FittsLaw/FittsLaw.html) and the R2=0.008146 I find here, are different. 
 
 * new analysis 
-** Loading data
-   #+begin_src R :results output :session *R* :exports both
+  #+begin_src R :results output :session *R* :exports both
+  load_data_from_html = function(file_path){
    # using the htmltab package to scan html file
-   # selecting the 2nd table which contains all the data
-htmltab::htmltab(doc = "raw_data/20201010_1540_clement.html", which = 1) %>%
+   # selecting the 2nd table which contains all the data and the 1st selects the aggregated data
+  htmltab::htmltab(doc=file_path , which = 2) %>%
   as_tibble() %>%
    # convert the data_types to numbers
    mutate(A = readr::parse_number(x = A)) %>%
    mutate(W = readr::parse_number(x = W)) %>%
    mutate(MT = readr::parse_number(x = MT)) %>%
-   mutate(ID = readr::parse_number(x = ID)) -> data_clement
-   #+end_src
+   mutate(ID = readr::parse_number(x = ID))  
+}
+  #+end_src
 
-   #+RESULTS:
-   : 
-   : Neither <thead> nor <th> information found. Taking first table row for the header. If incorrect, specify header argument.
+  #+RESULTS:
+** first clement experiment
+*** Loading data
+    #+begin_src R :results output :session *R* :exports both
+ load_data_from_html("raw_data/20201010_1540_clement.html") -> data_clement
+    #+end_src
 
-** Plotting the data together with the linear regression
- r Plotting the raw data together with the linear regression
+    #+RESULTS:
+    : Neither <thead> nor <th> information found. Taking first table row for the header. If incorrect, specify header argument.
 
- #+begin_src R :results output graphics file :file pictures/20201010_1540_clement_data_regression.png :exports both :width 600 :height 400 :session *R*
+*** Plotting the data together with the linear regression
+  r Plotting the raw data together with the linear regression
+
+  #+begin_src R :results output graphics file :file pictures/20201010_1540_clement_data_regression.png :exports both :width 600 :height 400 :session *R*
   data_clement %>% ggplot(aes(ID, MT)) +
   geom_point() +
   geom_smooth(method='lm')
- #+end_src
+  #+end_src
 
- #+RESULTS:
- [[file:pictures/20201010_1540_clement_data_regression.png]]
-** Linear modeling
-    #+begin_src R :results output :session *R* :exports both
+  #+RESULTS:
+  [[file:pictures/20201010_1540_clement_data_regression.png]]
+
+*** Linear modeling
+     #+begin_src R :results output :session *R* :exports both
     model <- lm(MT~ID, data = data_clement)
     summary(model)
-   #+end_src
+    #+end_src
 
-   #+RESULTS:
-   #+begin_example
+    #+RESULTS:
+    #+begin_example
 
    Call:
    lm(formula = MT ~ ID, data = data_clement)
@@ -124,63 +141,75 @@ htmltab::htmltab(doc = "raw_data/20201010_1540_clement.html", which = 1) %>%
    Residual standard error: 76.27 on 7 degrees of freedom
    Multiple R-squared:  0.8965,	Adjusted R-squared:  0.8817 
    F-statistic: 60.64 on 1 and 7 DF,  p-value: 0.0001082
-   #+end_example
+    #+end_example
 
-* New analysis, for Dorian's first data acquisition
+** New analysis, for Dorian's first data acquisition
 
-  #+begin_src R :results output :exports both :session *R*
+   #+begin_src R :results output :exports both :session *R*
   analyse <- function(base_file_path) {
       meanMTdf <- read.csv(paste(base_file_path, "_MeanMT.csv", sep=""), header=T)
       rawdf <- read.csv(paste(base_file_path, "_RawData.csv", sep=""), header=T)
       return(rawdf)
   }
-  #+end_src
+   #+end_src
 
-  #+RESULTS:
+   #+RESULTS:
 
-  #+begin_src R :results output :session *R* :exports both
+   #+begin_src R :results output :session *R* :exports both
   meanMTdf <- analyse("../data/20221110_1510_Dorian")
-  #+end_src
+   #+end_src
 
-  #+RESULTS:
+   #+RESULTS:
+   : Erreur dans file(file, "rt") : impossible d'ouvrir la connexion
+   : De plus : Message d'avis :
+   : Dans file(file, "rt") :
+   :   impossible d'ouvrir le fichier '../data/20221110_1510_Dorian_MeanMT.csv' : Aucun fichier ou dossier de ce type
 
-  #+begin_src R :results output :session *R* :exports both
+   #+begin_src R :results output :session *R* :exports both
   model <- lm(MT~ID, data = meanMTdf)
   summary(model)
-  #+end_src
+   #+end_src
 
-  #+RESULTS:
-  #+begin_example
+   #+RESULTS:
+   #+begin_example
 
   Call:
   lm(formula = MT ~ ID, data = meanMTdf)
 
   Residuals:
-       Min       1Q   Median       3Q      Max 
-  -1220.85   -66.93    10.79   104.43   563.79 
+     Min     1Q Median     3Q    Max 
+  -381.4 -276.3   58.7  144.7  539.6 
 
   Coefficients:
-	      Estimate Std. Error t value Pr(>|t|)    
-  (Intercept)   672.65      80.42   8.364 1.70e-12 ***
-  ID            109.64      24.62   4.452 2.76e-05 ***
+	      Estimate Std. Error t value Pr(>|t|)  
+  (Intercept)   1108.4      351.1   3.158    0.016 *
+  ID             111.0      107.5   1.032    0.336  
   ---
   codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-  Residual standard error: 220.3 on 79 degrees of freedom
-  Multiple R-squared:  0.2006,	Adjusted R-squared:  0.1905 
-  F-statistic: 19.82 on 1 and 79 DF,  p-value: 2.757e-05
-  #+end_example
+  Residual standard error: 320.5 on 7 degrees of freedom
+  Multiple R-squared:  0.1321,	Adjusted R-squared:  0.008146 
+  F-statistic: 1.066 on 1 and 7 DF,  p-value: 0.3363
+   #+end_example
 
-  #+begin_src R :results output graphics file :file ../pictures/Dorian_1.png :exports both :width 600 :height 400 :session *R*
+   #+begin_src R :results output graphics file :file ../pictures/Dorian_1.png :exports both :width 600 :height 400 :session *R*
   ggplot(meanMTdf, aes(ID, MT)) +
      geom_point() +
      geom_smooth(method='lm')
-  #+end_src
+   #+end_src
 
-  #+RESULTS:
-  [[file:../pictures/Dorian_1.png]]
+   #+RESULTS:
+   [[file:../pictures/Dorian_1.png]]
 
-Our results do not match with the linear regression results provided
-by the experimentation website. If we use the MeanMTdf, we get similar
-Rsquare and coefficients (grossly) but if we use the raw data (which
-makes more sense), we find lower Rsquare but still similar coefficients.
+ Our results do not match with the linear regression results provided
+ by the experimentation website. If we use the MeanMTdf, we get similar
+ Rsquare and coefficients (grossly) but if we use the raw data (which
+ makes more sense), we find lower Rsquare but still similar coefficients.
+** graphic tablet 
+   #+begin_src R :results output :session *R* :exports both
+   graphic_experiment_clement <- load_data_from_html("raw_data/20221110_1631_clement.html")
+   #+end_src
+
+   #+RESULTS:
+   : Neither <thead> nor <th> information found. Taking first table row for the header. If incorrect, specify header argument.
+
