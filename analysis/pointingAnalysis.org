@@ -125,3 +125,62 @@ htmltab::htmltab(doc = "raw_data/20201010_1540_clement.html", which = 1) %>%
    Multiple R-squared:  0.8965,	Adjusted R-squared:  0.8817 
    F-statistic: 60.64 on 1 and 7 DF,  p-value: 0.0001082
    #+end_example
+
+* New analysis, for Dorian's first data acquisition
+
+  #+begin_src R :results output :exports both :session *R*
+  analyse <- function(base_file_path) {
+      meanMTdf <- read.csv(paste(base_file_path, "_MeanMT.csv", sep=""), header=T)
+      rawdf <- read.csv(paste(base_file_path, "_RawData.csv", sep=""), header=T)
+      return(rawdf)
+  }
+  #+end_src
+
+  #+RESULTS:
+
+  #+begin_src R :results output :session *R* :exports both
+  meanMTdf <- analyse("../data/20221110_1510_Dorian")
+  #+end_src
+
+  #+RESULTS:
+
+  #+begin_src R :results output :session *R* :exports both
+  model <- lm(MT~ID, data = meanMTdf)
+  summary(model)
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+
+  Call:
+  lm(formula = MT ~ ID, data = meanMTdf)
+
+  Residuals:
+       Min       1Q   Median       3Q      Max 
+  -1220.85   -66.93    10.79   104.43   563.79 
+
+  Coefficients:
+	      Estimate Std. Error t value Pr(>|t|)    
+  (Intercept)   672.65      80.42   8.364 1.70e-12 ***
+  ID            109.64      24.62   4.452 2.76e-05 ***
+  ---
+  codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+  Residual standard error: 220.3 on 79 degrees of freedom
+  Multiple R-squared:  0.2006,	Adjusted R-squared:  0.1905 
+  F-statistic: 19.82 on 1 and 79 DF,  p-value: 2.757e-05
+  #+end_example
+
+  #+begin_src R :results output graphics file :file ../pictures/Dorian_1.png :exports both :width 600 :height 400 :session *R*
+  ggplot(meanMTdf, aes(ID, MT)) +
+     geom_point() +
+     geom_smooth(method='lm')
+  #+end_src
+
+  #+RESULTS:
+  [[file:../pictures/Dorian_1.png]]
+
+Our results do not match with the linear regression results provided
+by the experimentation website. If we use the MeanMTdf, we get similar
+Rsquare and coefficients (grossly) but if we use the raw data (which
+makes more sense), we find lower Rsquare but still similar coefficients.
