@@ -1,0 +1,157 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0">
+<title>Fitts' Law Experiment</title>
+<style type="text/css" media="screen">
+  .active-target, .inactive-target {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    position: absolute;
+  }
+
+  .active-target {
+    background-color: blue;
+  }
+
+  .inactive-target {
+    background-color: grey;
+  }
+
+  #toolbar,  #toolbar-label {
+    display:block;
+    width: 650px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  #results {
+    width: 500px;
+    margin: 40px auto;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid black;
+    padding: 10px;
+  }
+
+  #stats {
+  }
+
+  #toolbar input[type="text"], #toolbar-label input[type="text"] {
+    display: inline;
+    height: 50px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid #20CD0C;
+    text-align: center;
+    font-family:"Times New Roman",Georgia,Serif;
+    color: #9583DE;
+    font-size: 2em;
+  }
+
+  #toolbar-label input[type="text"] {
+    border: none;
+  }
+
+
+  #trials-input, #trials-input-label{
+    width: 100px;
+  }
+  
+  #trials-width, #trials-width-label {
+    width: 200px;
+  }
+
+  #trials-ampl, #trials-ampl-label {
+    width: 200px;
+  }
+  
+  #toolbar input[type="button"] {
+    display: inline;
+    width: 120px;
+    height: 50px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid #20CD0C;
+    background-color: #EDE09A;
+    text-align: center;
+    font-family:"Times New Roman",Georgia,Serif;
+    color: #9583DE;
+    font-size: 2em;
+    cursor: pointer;
+  }
+
+  #results div.results-label {
+    margin-top: 20px;
+  }
+
+  #results table {
+    border: solid 1px black;
+    border-spacing: 0px;
+    padding: 0;
+  }
+
+  #results table td {
+    text-align: center;
+    border: solid 1px black;
+    padding: 5px;
+  }
+
+
+</style>
+<script type="text/javascript" src="20221110_1619_dorian_fichiers/prototype.js"></script>
+<script type="text/javascript" src="20221110_1619_dorian_fichiers/effects.js"></script>
+<script type="text/javascript" src="20221110_1619_dorian_fichiers/utils.js"></script>
+<script type="text/javascript" src="20221110_1619_dorian_fichiers/fitts.js"></script>
+<script type="text/javascript">
+document.observe("dom:loaded", function() {
+  var phel = $('placeholder');
+  //FIXME ie...
+  phel.style.width = (window.innerWidth - 50) + "px";
+  phel.style.height = (window.innerHeight - 150) + "px";
+<!--   phel.style.width = 1000 + "px"; -->
+<!--   phel.style.height = 600 + "px"; -->
+  phel.style.padding = 0 + "px";
+
+  $('results').hide();
+  new FittsLawExperiment('trials-width',
+                         'trials-ampl',
+                         'trials-input', 
+                         'start-button');
+});
+</script>
+  
+</head>
+<body>
+  <div id="placeholder" style="width: 1870px; height: 739px; padding: 0px; display: none;"></div>
+  <div id="toolbar" style="display: none;">
+    <input type="text" name="trials" id="trials-width" value="16,32,64,128,256">
+    <input type="text" name="trials" id="trials-ampl" value="128,256,512,1024">
+    <input type="text" name="trials" id="trials-input" value="10">
+    <input type="button" name="Start" id="start-button" value="Done">
+<!--     <div id="start-button">Start</div> -->
+<!--     <div id="status"></div> -->
+  </div>
+
+  <div id="toolbar-label" style="display: none;">
+    <input type="text" name="trials" id="trials-width-label" value="widths">
+    <input type="text" name="trials" id="trials-ampl-label" value="amplitudes">
+    <input type="text" name="trials" id="trials-input-label" value="trials">
+<!--     <div id="start-button">Start</div> -->
+<!--     <div id="status"></div> -->
+  </div>
+
+  <div id="results" style="">
+    <div id="stats">Error: 6<br>MT = 372.059 + 151.219log(A/W + 1)<br>RSquare = 0.875</div>
+    <div class="results-label">Mean MT</div>
+    <table id="results-table"><tr><td>A</td><td>W</td><td>MT</td><td>ID</td></tr><tr><td>1024</td><td>64</td><td>805</td><td>4</td></tr><tr><td>1024</td><td>32</td><td>1072</td><td>5</td></tr><tr><td>128</td><td>32</td><td>852</td><td>2</td></tr><tr><td>512</td><td>128</td><td>765</td><td>2</td></tr><tr><td>256</td><td>16</td><td>938</td><td>4</td></tr><tr><td>256</td><td>128</td><td>560</td><td>2</td></tr><tr><td>512</td><td>16</td><td>1168</td><td>5</td></tr><tr><td>512</td><td>64</td><td>815</td><td>3</td></tr><tr><td>512</td><td>32</td><td>965</td><td>4</td></tr><tr><td>1024</td><td>16</td><td>1417</td><td>6</td></tr><tr><td>512</td><td>256</td><td>605</td><td>2</td></tr><tr><td>128</td><td>64</td><td>630</td><td>2</td></tr><tr><td>1024</td><td>256</td><td>770</td><td>2</td></tr><tr><td>1024</td><td>128</td><td>840</td><td>3</td></tr><tr><td>128</td><td>16</td><td>912</td><td>3</td></tr><tr><td>256</td><td>64</td><td>682</td><td>2</td></tr><tr><td>256</td><td>32</td><td>862</td><td>3</td></tr></table>
+    <div class="results-label">Raw Data</div>
+    <table id="all-results-table"><tr><td>A</td><td>W</td><td>MT</td><td>ID</td></tr><tr><td>1024</td><td>64</td><td>854</td><td>4</td></tr><tr><td>1024</td><td>64</td><td>706</td><td>4</td></tr><tr><td>1024</td><td>64</td><td>853</td><td>4</td></tr><tr><td>1024</td><td>64</td><td>916</td><td>4</td></tr><tr><td>1024</td><td>64</td><td>719</td><td>4</td></tr><tr><td>1024</td><td>64</td><td>797</td><td>4</td></tr><tr><td>1024</td><td>64</td><td>733</td><td>4</td></tr><tr><td>1024</td><td>64</td><td>780</td><td>4</td></tr><tr><td>1024</td><td>64</td><td>885</td><td>4</td></tr><tr><td>1024</td><td>32</td><td>1485</td><td>5</td></tr><tr><td>1024</td><td>32</td><td>959</td><td>5</td></tr><tr><td>1024</td><td>32</td><td>1007</td><td>5</td></tr><tr><td>1024</td><td>32</td><td>1169</td><td>5</td></tr><tr><td>1024</td><td>32</td><td>1036</td><td>5</td></tr><tr><td>1024</td><td>32</td><td>1094</td><td>5</td></tr><tr><td>1024</td><td>32</td><td>962</td><td>5</td></tr><tr><td>1024</td><td>32</td><td>899</td><td>5</td></tr><tr><td>1024</td><td>32</td><td>1033</td><td>5</td></tr><tr><td>128</td><td>32</td><td>1157</td><td>2</td></tr><tr><td>128</td><td>32</td><td>929</td><td>2</td></tr><tr><td>128</td><td>32</td><td>780</td><td>2</td></tr><tr><td>128</td><td>32</td><td>886</td><td>2</td></tr><tr><td>128</td><td>32</td><td>945</td><td>2</td></tr><tr><td>128</td><td>32</td><td>764</td><td>2</td></tr><tr><td>128</td><td>32</td><td>781</td><td>2</td></tr><tr><td>128</td><td>32</td><td>704</td><td>2</td></tr><tr><td>128</td><td>32</td><td>720</td><td>2</td></tr><tr><td>512</td><td>128</td><td>931</td><td>2</td></tr><tr><td>512</td><td>128</td><td>884</td><td>2</td></tr><tr><td>512</td><td>128</td><td>840</td><td>2</td></tr><tr><td>512</td><td>128</td><td>766</td><td>2</td></tr><tr><td>512</td><td>128</td><td>824</td><td>2</td></tr><tr><td>512</td><td>128</td><td>646</td><td>2</td></tr><tr><td>512</td><td>128</td><td>676</td><td>2</td></tr><tr><td>512</td><td>128</td><td>643</td><td>2</td></tr><tr><td>512</td><td>128</td><td>676</td><td>2</td></tr><tr><td>256</td><td>16</td><td>870</td><td>4</td></tr><tr><td>256</td><td>16</td><td>990</td><td>4</td></tr><tr><td>256</td><td>16</td><td>780</td><td>4</td></tr><tr><td>256</td><td>16</td><td>824</td><td>4</td></tr><tr><td>256</td><td>16</td><td>871</td><td>4</td></tr><tr><td>256</td><td>16</td><td>1034</td><td>4</td></tr><tr><td>256</td><td>16</td><td>1305</td><td>4</td></tr><tr><td>256</td><td>16</td><td>1096</td><td>4</td></tr><tr><td>256</td><td>16</td><td>674</td><td>4</td></tr><tr><td>256</td><td>128</td><td>616</td><td>2</td></tr><tr><td>256</td><td>128</td><td>630</td><td>2</td></tr><tr><td>256</td><td>128</td><td>539</td><td>2</td></tr><tr><td>256</td><td>128</td><td>600</td><td>2</td></tr><tr><td>256</td><td>128</td><td>466</td><td>2</td></tr><tr><td>256</td><td>128</td><td>525</td><td>2</td></tr><tr><td>256</td><td>128</td><td>614</td><td>2</td></tr><tr><td>256</td><td>128</td><td>540</td><td>2</td></tr><tr><td>256</td><td>128</td><td>509</td><td>2</td></tr><tr><td>512</td><td>16</td><td>1561</td><td>5</td></tr><tr><td>512</td><td>16</td><td>1079</td><td>5</td></tr><tr><td>512</td><td>16</td><td>1096</td><td>5</td></tr><tr><td>512</td><td>16</td><td>930</td><td>5</td></tr><tr><td>512</td><td>16</td><td>1125</td><td>5</td></tr><tr><td>512</td><td>16</td><td>1366</td><td>5</td></tr><tr><td>512</td><td>16</td><td>1184</td><td>5</td></tr><tr><td>512</td><td>16</td><td>1124</td><td>5</td></tr><tr><td>512</td><td>16</td><td>1050</td><td>5</td></tr><tr><td>512</td><td>64</td><td>721</td><td>3</td></tr><tr><td>512</td><td>64</td><td>825</td><td>3</td></tr><tr><td>512</td><td>64</td><td>854</td><td>3</td></tr><tr><td>512</td><td>64</td><td>750</td><td>3</td></tr><tr><td>512</td><td>64</td><td>706</td><td>3</td></tr><tr><td>512</td><td>64</td><td>839</td><td>3</td></tr><tr><td>512</td><td>64</td><td>1066</td><td>3</td></tr><tr><td>512</td><td>64</td><td>884</td><td>3</td></tr><tr><td>512</td><td>64</td><td>690</td><td>3</td></tr><tr><td>512</td><td>32</td><td>945</td><td>4</td></tr><tr><td>512</td><td>32</td><td>1170</td><td>4</td></tr><tr><td>512</td><td>32</td><td>854</td><td>4</td></tr><tr><td>512</td><td>32</td><td>1050</td><td>4</td></tr><tr><td>512</td><td>32</td><td>931</td><td>4</td></tr><tr><td>512</td><td>32</td><td>1004</td><td>4</td></tr><tr><td>512</td><td>32</td><td>991</td><td>4</td></tr><tr><td>512</td><td>32</td><td>884</td><td>4</td></tr><tr><td>512</td><td>32</td><td>855</td><td>4</td></tr><tr><td>1024</td><td>16</td><td>1560</td><td>6</td></tr><tr><td>1024</td><td>16</td><td>1605</td><td>6</td></tr><tr><td>1024</td><td>16</td><td>1455</td><td>6</td></tr><tr><td>1024</td><td>16</td><td>1260</td><td>6</td></tr><tr><td>1024</td><td>16</td><td>1364</td><td>6</td></tr><tr><td>1024</td><td>16</td><td>1276</td><td>6</td></tr><tr><td>1024</td><td>16</td><td>1229</td><td>6</td></tr><tr><td>1024</td><td>16</td><td>1396</td><td>6</td></tr><tr><td>1024</td><td>16</td><td>1606</td><td>6</td></tr><tr><td>512</td><td>256</td><td>586</td><td>2</td></tr><tr><td>512</td><td>256</td><td>645</td><td>2</td></tr><tr><td>512</td><td>256</td><td>600</td><td>2</td></tr><tr><td>512</td><td>256</td><td>629</td><td>2</td></tr><tr><td>512</td><td>256</td><td>631</td><td>2</td></tr><tr><td>512</td><td>256</td><td>540</td><td>2</td></tr><tr><td>512</td><td>256</td><td>601</td><td>2</td></tr><tr><td>512</td><td>256</td><td>584</td><td>2</td></tr><tr><td>512</td><td>256</td><td>630</td><td>2</td></tr><tr><td>128</td><td>64</td><td>585</td><td>2</td></tr><tr><td>128</td><td>64</td><td>735</td><td>2</td></tr><tr><td>128</td><td>64</td><td>644</td><td>2</td></tr><tr><td>128</td><td>64</td><td>542</td><td>2</td></tr><tr><td>128</td><td>64</td><td>704</td><td>2</td></tr><tr><td>128</td><td>64</td><td>585</td><td>2</td></tr><tr><td>128</td><td>64</td><td>659</td><td>2</td></tr><tr><td>128</td><td>64</td><td>645</td><td>2</td></tr><tr><td>128</td><td>64</td><td>570</td><td>2</td></tr><tr><td>1024</td><td>256</td><td>766</td><td>2</td></tr><tr><td>1024</td><td>256</td><td>779</td><td>2</td></tr><tr><td>1024</td><td>256</td><td>720</td><td>2</td></tr><tr><td>1024</td><td>256</td><td>960</td><td>2</td></tr><tr><td>1024</td><td>256</td><td>780</td><td>2</td></tr><tr><td>1024</td><td>256</td><td>735</td><td>2</td></tr><tr><td>1024</td><td>256</td><td>840</td><td>2</td></tr><tr><td>1024</td><td>256</td><td>720</td><td>2</td></tr><tr><td>1024</td><td>256</td><td>631</td><td>2</td></tr><tr><td>1024</td><td>128</td><td>870</td><td>3</td></tr><tr><td>1024</td><td>128</td><td>885</td><td>3</td></tr><tr><td>1024</td><td>128</td><td>840</td><td>3</td></tr><tr><td>1024</td><td>128</td><td>900</td><td>3</td></tr><tr><td>1024</td><td>128</td><td>825</td><td>3</td></tr><tr><td>1024</td><td>128</td><td>811</td><td>3</td></tr><tr><td>1024</td><td>128</td><td>929</td><td>3</td></tr><tr><td>1024</td><td>128</td><td>735</td><td>3</td></tr><tr><td>1024</td><td>128</td><td>765</td><td>3</td></tr><tr><td>128</td><td>16</td><td>825</td><td>3</td></tr><tr><td>128</td><td>16</td><td>825</td><td>3</td></tr><tr><td>128</td><td>16</td><td>765</td><td>3</td></tr><tr><td>128</td><td>16</td><td>1200</td><td>3</td></tr><tr><td>128</td><td>16</td><td>1050</td><td>3</td></tr><tr><td>128</td><td>16</td><td>976</td><td>3</td></tr><tr><td>128</td><td>16</td><td>764</td><td>3</td></tr><tr><td>128</td><td>16</td><td>750</td><td>3</td></tr><tr><td>128</td><td>16</td><td>1050</td><td>3</td></tr><tr><td>256</td><td>64</td><td>570</td><td>2</td></tr><tr><td>256</td><td>64</td><td>690</td><td>2</td></tr><tr><td>256</td><td>64</td><td>720</td><td>2</td></tr><tr><td>256</td><td>64</td><td>630</td><td>2</td></tr><tr><td>256</td><td>64</td><td>720</td><td>2</td></tr><tr><td>256</td><td>64</td><td>706</td><td>2</td></tr><tr><td>256</td><td>64</td><td>673</td><td>2</td></tr><tr><td>256</td><td>64</td><td>766</td><td>2</td></tr><tr><td>256</td><td>64</td><td>661</td><td>2</td></tr><tr><td>256</td><td>32</td><td>854</td><td>3</td></tr><tr><td>256</td><td>32</td><td>767</td><td>3</td></tr><tr><td>256</td><td>32</td><td>840</td><td>3</td></tr><tr><td>256</td><td>32</td><td>944</td><td>3</td></tr><tr><td>256</td><td>32</td><td>810</td><td>3</td></tr><tr><td>256</td><td>32</td><td>780</td><td>3</td></tr><tr><td>256</td><td>32</td><td>796</td><td>3</td></tr><tr><td>256</td><td>32</td><td>824</td><td>3</td></tr><tr><td>256</td><td>32</td><td>1140</td><td>3</td></tr></table>
+  </div>
+
+
+   
+
+ 
+<div class="inactive-target" style="top: 25px; left: 816px; width: 32px; height: 839px; display: none;"></div><div class="active-target" style="top: 25px; left: 1072px; width: 32px; height: 839px; display: none;"></div></body></html>

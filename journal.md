@@ -60,9 +60,11 @@ My data analysis is performed and commented in the [pointingAnalysis.Rmd file](.
 
 ### 2022-11-10
 
+#### Dorian's first epxeriment
+
 Using the same software for data acquisition as before. Documentation on the experiment software: https://ergo.human.cornell.edu/FittsLaw/FittsLawInstructions.html
 
-First attempt, Dorian, on 2022/11/10, in files
+First attempt, Dorian, with trackpad of his own computer, on in files
 
 - 20221110_1510_Dorian_RawData.csv
 - 20221110_1510_Dorian_MeanMT.csv
@@ -74,3 +76,31 @@ MT = 650.777 + 112.811 x log(A/W + 1)
 RSquare = 0.762
 
 Notably, two observations in the first file have an unusually low Movement Time of 1 and 0 milliseconds.
+
+Observing that we have only four different index of difficulty, it tells us little about the "actual" shape of the curve we would like to run experimants with more IDs.
+
+#### Dorian's second experiment
+
+This time, with graphic tablet, same computer
+
+We observe that throughout the experiment, ove the ten iterations we can reach an almost automatic movement, but when transitioning to the next task, it starts slower. We should see how movement time evolves during a given sub-experiment with fixed set of targets.
+
+Time of observation: 16:19
+
+Widths: 16,32,64,128,256
+
+Amplitudes: 128,256,512,1024
+
+Trials: 10
+
+#### Clement's second experiment
+
+This time, with graphic tablet, Dorian's computer. He is novice with graphic tablet
+
+Time of observation: 16:31
+
+Widths: 16,32,64,128,256
+
+Amplitudes: 128,256,512,1024
+
+Trials: 10
