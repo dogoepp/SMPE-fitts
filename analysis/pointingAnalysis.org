@@ -66,14 +66,3 @@ summary(model)
 
 Weirdly, in contrast to what Fitts' law says, ID does not seem to have an impact on the movement time. 
 Also, the R2=0.218 reported by the [experimental software](http://ergo.human.cornell.edu/FittsLaw/FittsLaw.html) and the R2=0.008146 I find here, are different. 
-
-* New data collection
-
-Documentation on the experiment software: https://ergo.human.cornell.edu/FittsLaw/FittsLawInstructions.html
-
-First attempt, Dorian, on 2022/11/10, in files
-
-- 20221110_1510_Dorian_RawData.csv
-- 20221110_1510_Dorian_MeanMT.csv
-
-notably, two observations in the first file have an unusually low Movement Time of 1 and 0 milliseconds.

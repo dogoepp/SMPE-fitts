@@ -55,3 +55,14 @@ The Webpage returned the following results:
 #### Data analysis
 
 My data analysis is performed and commented in the [pointingAnalysis.Rmd file](./analysis/pointingAnalysis.Rmd) (R markdown file). 
+
+### 2022-11-10
+
+Using the same software for data acquisition as before. Documentation on the experiment software: https://ergo.human.cornell.edu/FittsLaw/FittsLawInstructions.html
+
+First attempt, Dorian, on 2022/11/10, in files
+
+- 20221110_1510_Dorian_RawData.csv
+- 20221110_1510_Dorian_MeanMT.csv
+
+Notably, two observations in the first file have an unusually low Movement Time of 1 and 0 milliseconds.
