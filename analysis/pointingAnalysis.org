@@ -1,0 +1,68 @@
+---
+title: "PointingXP"
+author: "Céline Coutrix"
+date: "11/17/2021"
+output: html_document
+---
+
+* Loading libraries
+
+#+begin_src R :results output :session *R* :exports both
+library(ggplot2)
+#+end_src
+
+#+RESULTS:
+
+* Loading data
+
+loading csv data into a dataframe
+  #+begin_src R :results output :session *R* :exports both
+  meanMTdf <- read.csv("../data/20211117_1527_MeanMT.csv", header=T)
+rawdf <- read.csv("../data/20211117_1527_RawData.csv", header=T)
+  #+end_src
+
+  #+RESULTS:
+
+* Plotting the data together with the linear regression
+r Plotting the raw data together with the linear regression
+
+#+begin_src R :results output graphics file :file ../pictures/raw_data_regression.png :exports both :width 600 :height 400 :session *R*
+ggplot(meanMTdf, aes(ID, MT)) +
+  geom_point() +
+  geom_smooth(method='lm')
+#+end_src
+
+#+RESULTS:
+[[file:../pictures/raw_data_regression.png]]
+
+* Linear modelling
+
+  #+begin_src R :results output :session *R* :exports both
+  model <- lm(MT~ID, data = meanMTdf)
+summary(model)
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+
+  Call:
+  lm(formula = MT ~ ID, data = meanMTdf)
+
+  Residuals:
+     Min     1Q Median     3Q    Max 
+  -381.4 -276.3   58.7  144.7  539.6 
+
+  Coefficients:
+	      Estimate Std. Error t value Pr(>|t|)  
+  (Intercept)   1108.4      351.1   3.158    0.016 *
+  ID             111.0      107.5   1.032    0.336  
+  ---
+  codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+  Residual standard error: 320.5 on 7 degrees of freedom
+  Multiple R-squared:  0.1321,	Adjusted R-squared:  0.008146 
+  F-statistic: 1.066 on 1 and 7 DF,  p-value: 0.3363
+  #+end_example
+
+Weirdly, in contrast to what Fitts' law says, ID does not seem to have an impact on the movement time. 
+Also, the R2=0.218 reported by the [experimental software](http://ergo.human.cornell.edu/FittsLaw/FittsLaw.html) and the R2=0.008146 I find here, are different. 
