@@ -28,17 +28,19 @@ Each file name is named after the following format: `YYYYMMDD_HHMM_<data>` where
 
 This folder contains my R markdown script used to analyze the data collected from the experiment. 
 
+## Experimental task
+
+I used the implementation of a [pointing experiment from Ergonomics Web at Cornell University](http://ergo.human.cornell.edu/FittsLaw/FittsLaw.html).
+On this Webpage, one can gather data for controlled 1D user pointing experiments.
+1. In the first text field, the experimenter enters the _widths_ of the targets, seperated with ','.
+2. In the second text field, the experimenter enters the _distance_ between targets, also called "_amplitude_", seperated with ','.
+3. In the last text field, the experiment enters the number of trial s·he wants to collect for each combination of _widths_ and _distances_.
+
+We observe that having different screens and touchpads, Dorian and Clément might face different difficulty or easiness to perform the actions, as our devices might give us more or less pointing, or viewing accuracy.
+
 ## Experimental Reports
 
 ### 2021-11-17
-
-#### Experimental task
-
-I used the implementation of a [pointing experiment from Ergonomics Web at Cornell University](http://ergo.human.cornell.edu/FittsLaw/FittsLaw.html). 
-On this Webpage, one can gather data for controlled 1D user pointing experiments. 
-1. In the first text field, the experimenter enters the _widths_ of the targets, seperated with ','. 
-2. In the second text field, the experimenter enters the _distance_ between targets, also called "_amplitude_", seperated with ','. 
-3. In the last text field, the experiment enters the number of trial s·he wants to collect for each combination of _widths_ and _distances_. 
 
 #### Experimental variables
 
@@ -55,3 +57,20 @@ The Webpage returned the following results:
 #### Data analysis
 
 My data analysis is performed and commented in the [pointingAnalysis.Rmd file](./analysis/pointingAnalysis.Rmd) (R markdown file). 
+
+### 2022-11-10
+
+Using the same software for data acquisition as before. Documentation on the experiment software: https://ergo.human.cornell.edu/FittsLaw/FittsLawInstructions.html
+
+First attempt, Dorian, on 2022/11/10, in files
+
+- 20221110_1510_Dorian_RawData.csv
+- 20221110_1510_Dorian_MeanMT.csv
+
+The software also gives us:
+
+Error: 7
+MT = 650.777 + 112.811 x log(A/W + 1)
+RSquare = 0.762
+
+Notably, two observations in the first file have an unusually low Movement Time of 1 and 0 milliseconds.
