@@ -70,7 +70,7 @@ First attempt, Dorian, on 2022/11/10, in files
 The software also gives us:
 
 Error: 7
-MT = 650.777 + 112.811log(A/W + 1)
+MT = 650.777 + 112.811 x log(A/W + 1)
 RSquare = 0.762
 
 Notably, two observations in the first file have an unusually low Movement Time of 1 and 0 milliseconds.
