@@ -28,5 +28,5 @@ random.shuffle(l)
 for (p, d, w, h) in l:
     s += (f"{p}; {d}; {w}; {h}; 6\n")
   
-with open(f"{dt_string}_experiences.csv", "w") as out:
+with open(f"{dt_string}_experiments.csv", "w") as out:
     out.write(s)    

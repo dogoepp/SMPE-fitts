@@ -147,3 +147,11 @@ Widths: 16,32,64,128,256
 Amplitudes: 128,256,512,1024
 
 Trials: 10
+
+### 2022-11-14
+
+We devised the experiment parameters described in the [Choice of experiment parameters](#choice-of-experiment-parameters) section above. These were realised in the file `exp_parameters/2022-11-14_experiences.csv` which we generated with `exp_parameters/parameters.py`.14_experiences
+
+The related data is gathered in `raw_data` in the files dated today. For each individual, the experiments are performed in the order found in the csv file above.
+
+There was an issue with the data of the first experiment, by Dorian. Due to an error in saving it, the data was lost. Dorian re-ran that experiment, but out of order.

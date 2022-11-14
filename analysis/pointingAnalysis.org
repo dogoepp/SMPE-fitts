@@ -79,6 +79,10 @@ summary(model)
  Also, the R2=0.218 reported by the [experimental software](http://ergo.human.cornell.edu/FittsLaw/FittsLaw.html) and the R2=0.008146 I find here, are different. 
 
 * new analysis 
+
+Let us define a function which loads the experiment data directly from the raw HTML of the experiment website. 
+This saves us the extra manual step of converting the HTML tables into CSV files.
+
   #+begin_src R :results output :session *R* :exports both
   load_data_from_html = function(file_path){
    # using the htmltab package to scan html file
@@ -89,11 +93,22 @@ summary(model)
    mutate(A = readr::parse_number(x = A)) %>%
    mutate(W = readr::parse_number(x = W)) %>%
    mutate(MT = readr::parse_number(x = MT)) %>%
-   mutate(ID = readr::parse_number(x = ID))  
+   mutate(ID = readr::parse_number(x = ID))
 }
   #+end_src
 
   #+RESULTS:
+
+converting HTML to csv
+
+  #+begin_src R :results output :session *R* :exports both
+  store_in_csv = function(df, path){
+    write_csv(df, path)
+  }
+  #+end_src
+
+  #+RESULTS:
+
 ** first clement experiment
 *** Loading data
     #+begin_src R :results output :session *R* :exports both
@@ -101,7 +116,9 @@ summary(model)
     #+end_src
 
     #+RESULTS:
-    : Neither <thead> nor <th> information found. Taking first table row for the header. If incorrect, specify header argument.
+    : Erreur : Couldn't find the table. Try passing (different) information to the which argument.
+    : De plus : Message d'avis :
+    : XML content does not seem to be XML: ''
 
 *** Plotting the data together with the linear regression
   r Plotting the raw data together with the linear regression
@@ -123,27 +140,28 @@ summary(model)
 
     #+RESULTS:
     #+begin_example
+    Erreur dans is.data.frame(data) : objet 'data_clement' introuvable
 
-   Call:
-   lm(formula = MT ~ ID, data = data_clement)
+    Call:
+    lm(formula = MT ~ ID, data = meanMTdf)
 
-   Residuals:
-       Min      1Q  Median      3Q     Max 
-   -99.512 -23.300  -5.087  23.912 125.700 
+    Residuals:
+       Min     1Q Median     3Q    Max 
+    -381.4 -276.3   58.7  144.7  539.6 
 
-   Coefficients:
-	       Estimate Std. Error t value Pr(>|t|)    
-   (Intercept)   196.45      83.55   2.351 0.050996 .  
-   ID            199.21      25.58   7.787 0.000108 ***
-   ---
-   codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Coefficients:
+		Estimate Std. Error t value Pr(>|t|)  
+    (Intercept)   1108.4      351.1   3.158    0.016 *
+    ID             111.0      107.5   1.032    0.336  
+    ---
+    codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-   Residual standard error: 76.27 on 7 degrees of freedom
-   Multiple R-squared:  0.8965,	Adjusted R-squared:  0.8817 
-   F-statistic: 60.64 on 1 and 7 DF,  p-value: 0.0001082
+    Residual standard error: 320.5 on 7 degrees of freedom
+    Multiple R-squared:  0.1321,	Adjusted R-squared:  0.008146 
+    F-statistic: 1.066 on 1 and 7 DF,  p-value: 0.3363
     #+end_example
 
-** New analysis, for Dorian's first data acquisition
+** Dorian's first data acquisition
 
    #+begin_src R :results output :exports both :session *R*
   analyse <- function(base_file_path) {
@@ -173,23 +191,23 @@ summary(model)
    #+RESULTS:
    #+begin_example
 
-  Call:
-  lm(formula = MT ~ ID, data = meanMTdf)
+   Call:
+   lm(formula = MT ~ ID, data = meanMTdf)
 
-  Residuals:
-     Min     1Q Median     3Q    Max 
-  -381.4 -276.3   58.7  144.7  539.6 
+   Residuals:
+      Min     1Q Median     3Q    Max 
+   -381.4 -276.3   58.7  144.7  539.6 
 
-  Coefficients:
-	      Estimate Std. Error t value Pr(>|t|)  
-  (Intercept)   1108.4      351.1   3.158    0.016 *
-  ID             111.0      107.5   1.032    0.336  
-  ---
-  codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+   Coefficients:
+	       Estimate Std. Error t value Pr(>|t|)  
+   (Intercept)   1108.4      351.1   3.158    0.016 *
+   ID             111.0      107.5   1.032    0.336  
+   ---
+   codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-  Residual standard error: 320.5 on 7 degrees of freedom
-  Multiple R-squared:  0.1321,	Adjusted R-squared:  0.008146 
-  F-statistic: 1.066 on 1 and 7 DF,  p-value: 0.3363
+   Residual standard error: 320.5 on 7 degrees of freedom
+   Multiple R-squared:  0.1321,	Adjusted R-squared:  0.008146 
+   F-statistic: 1.066 on 1 and 7 DF,  p-value: 0.3363
    #+end_example
 
    #+begin_src R :results output graphics file :file ../pictures/Dorian_1.png :exports both :width 600 :height 400 :session *R*
@@ -205,7 +223,8 @@ summary(model)
  by the experimentation website. If we use the MeanMTdf, we get similar
  Rsquare and coefficients (grossly) but if we use the raw data (which
  makes more sense), we find lower Rsquare but still similar coefficients.
-** graphic tablet 
+
+** Using the graphic tablet 
    #+begin_src R :results output :session *R* :exports both
    graphic_experiment_clement <- load_data_from_html("raw_data/20221110_1631_clement.html")
    #+end_src
@@ -213,3 +232,54 @@ summary(model)
    #+RESULTS:
    : Neither <thead> nor <th> information found. Taking first table row for the header. If incorrect, specify header argument.
 
+** Designed experiment on 2022-11-14
+
+We will analyse here the data gathered during the experiments on 2022-11-14, which were designed as explained in `journal.md`.
+
+#+begin_src R :results output :session *R* :exports both
+file_names = c(
+   "1934_dorian",
+   "1938_dorian",
+   "1942_dorian",
+   "1936_clement",
+   "1939_clement",
+   "2024_dorian"
+)
+person = c(
+   "Dorian",
+   "Dorian",
+   "Dorian",
+   "Clement",
+   "Clement",
+   "Dorian"
+)
+input_device = c(
+   "Track Pad",
+   "Graphic tablet",
+   "Graphic tablet",
+   "Track Pad",
+   "Track Pad",
+   "Track Pad"
+)
+
+# experiments = data.frame()
+
+for (i in 1:6) { 
+   in_path <- paste("raw_data/20221114_", file_names[i] ,".html", sep="")
+   out_path <- paste("data/20221114_", file_names[i] ,"_RawData.csv", sep="")
+   print(in_path)
+   print(out_path)
+   experiment <- load_data_from_html(in_path)
+   store_in_csv(experiment,out_path)
+}
+#    experiment$exp = i
+#    experiment$person = person[i]
+#    experiments$input_device = input_device[i]
+#    experiments <- rbind(experiments, experiment)
+# }
+# experiments
+
+
+#+end_src
+
+#+RESULTS:
