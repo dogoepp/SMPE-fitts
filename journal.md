@@ -15,28 +15,17 @@ A large part of Human-Computer Interaction research since then builds on top of 
 
 This project aims at finding the values of the _a_ and _b_ parameters. This document contains my attempts to experimentally find _a_ and _b_ parameters.
 
-## General Organization
-
-### data/
-
-This folder contains both raw and processed experimental data that is returned from the experimental software. 
-Each file name is named after the following format: `YYYYMMDD_HHMM_<data>` where `<data>` is either:
-- `RawData`, i.e. the raw data  as returned from the experimental software. 
-- `MeanMT`, i.e. the processed mean movement times as returned from the experimental software. 
-
-### analysis/
-
-This folder contains my R markdown script used to analyze the data collected from the experiment. 
-
 ## Experimental task
 
 I used the implementation of a [pointing experiment from Ergonomics Web at Cornell University](http://ergo.human.cornell.edu/FittsLaw/FittsLaw.html).
 On this Webpage, one can gather data for controlled 1D user pointing experiments.
-1. In the first text field, the experimenter enters the _widths_ of the targets, seperated with ','.
-2. In the second text field, the experimenter enters the _distance_ between targets, also called "_amplitude_", seperated with ','.
+1. In the first text field, the experimenter enters the _widths_ of the targets, separated with ','.
+2. In the second text field, the experimenter enters the _distance_ between targets, also called "_amplitude_", separated with ','.
 3. In the last text field, the experiment enters the number of trial s·he wants to collect for each combination of _widths_ and _distances_.
 
 We observe that having different screens and touchpads, Dorian and Clément might face different difficulty or easiness to perform the actions, as our devices might give us more or less pointing, or viewing accuracy.
+
+
 
 ## Experimental Reports
 
@@ -60,7 +49,7 @@ My data analysis is performed and commented in the [pointingAnalysis.Rmd file](.
 
 ### 2022-11-10
 
-#### Dorian's first epxeriment
+#### Dorian's first experiment
 
 Using the same software for data acquisition as before. Documentation on the experiment software: https://ergo.human.cornell.edu/FittsLaw/FittsLawInstructions.html
 
