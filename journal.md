@@ -25,7 +25,14 @@ On this Webpage, one can gather data for controlled 1D user pointing experiments
 
 We observe that having different screens and touchpads, Dorian and Clément might face different difficulty or easiness to perform the actions, as our devices might give us more or less pointing, or viewing accuracy.
 
+## Parameters of influence
 
+This experiment is about human-computer interaction. It might therefore be affected by several human factors, including:
+
+- tiredness
+- comfort with computers
+- practice with the input method of choice (here mouse, touch pad or graphic tablet)
+- practice with similar activities (for instance forst person shoot games)
 
 ## Experimental Reports
 
