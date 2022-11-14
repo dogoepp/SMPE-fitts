@@ -23,16 +23,63 @@ On this Webpage, one can gather data for controlled 1D user pointing experiments
 2. In the second text field, the experimenter enters the _distance_ between targets, also called "_amplitude_", separated with ','.
 3. In the last text field, the experiment enters the number of trial s·he wants to collect for each combination of _widths_ and _distances_.
 
-We observe that having different screens and touchpads, Dorian and Clément might face different difficulty or easiness to perform the actions, as our devices might give us more or less pointing, or viewing accuracy.
+## Interrogations
+
+Having performed a few initial experiments, we observe that having different screens and touchpads, Dorian and Clément might face different difficulty or easiness to perform the actions, as our devices might give us more or less pointing, or viewing accuracy.
+
+We have also seen that the software does not compute the same regression coefficients as the ones we obtain from the tables.
+It might be caused by the removing of errors in one of the dataset (the software does not show give that data).
+The question of how we account for errors can be of importance, because if we simply remove them, then the subject is incentivised
+to maximise speed over accuracy. On the opposite side, how to make the number/amplitude of errors have an impact?
+
+For the following experiments, we choose to ask these questions:
+
+- Can we reproduce Fitts' law with the parameters we chose?
+- How do the different experiment parameters influence the coefficients of the linear regression of Fitts' law?
+- Is Fitt's law stable over different experiments, all other (controlled) parameters kept the same?
+- Is the linear model well suited?
 
 ## Parameters of influence
 
 This experiment is about human-computer interaction. It might therefore be affected by several human factors, including:
 
-- tiredness
+- tiredness (also muscular fatigue, if too many experiences are run, the experimenter will probably experience some of it) and focus
 - comfort with computers
 - practice with the input method of choice (here mouse, touch pad or graphic tablet)
 - practice with similar activities (for instance forst person shoot games)
+- person's posture
+- cursor shape on the screen
+- is the person handicapped ?
+- latency and accuracy of the system, from physical input to screen
+- left-handedness or belonging to certain social class or ethnic group could also have an impact
+- duration of the experience (number of trials per set, and number of different sets)
+- the software used measures distances in pixels so the task might differ depending on the computer (screen) and (input) peripherals used (including whether they are absolute or relative).
+
+We noticed also that during a set of measurements with same width and distance, there is a phenomenon aking to muscular learning. It means that we might measure the maximal speed at which a given person, at a given time, can repeatedly alternatively point at two fixed items. This approach does not measure the time to point at any random target. In that perspective, we should discard the first one or more observations of each set of measurements, as the person has to re-learn a movement.
+
+Since we are dealing with humans, the behavior for extremely small/large or close/far areas of pointing might have an impact on performance. We however chose not to cover this aspect.
+
+We could consider to run several experiments with different numbers of trials, to check whether it has an impact on performance.
+
+## Choice of experiment parameters
+
+Here are the parameters we choose to act upon:
+
+- left-handedness (since the original experiment by Fitts was done with right-handed people)
+- duration of the experience (number of trials per set, and number of different sets)
+- enough different indices of difficulty so that the linear regression makes sense (used to be four)
+
+We perform the experiments as two white males, MOSIG students (high education). One of us (Dorian) has been using the graphic tablet for about a month and the other (Clément) only once before.
+
+Ideally we should use the same computer for the experiments, but the current setting does not allow us to do so. This is therefore an uncontrolled parameter.
+
+The actual parameters are generated with 
+
+- Widths: 5 values taken from a uniform repartition over [15, 250]
+- Amplitudes: 5 values taken from a uniform repartition over [128, 1024]
+- Trials fixed to 6
+- Number of repetitions of the experiment: 2 per person
+- Input device : Graphic tablet (for Dorian only) and Track pad
 
 ## Experimental Reports
 
@@ -40,7 +87,7 @@ This experiment is about human-computer interaction. It might therefore be affec
 
 #### Experimental variables
 
-I ran the experiment from the above Webpage with 1, 2 and 4 widths and with 16, 32 and 64 distances, with 6 trials for each combination. 
+I ran the experiment from the above Webpage with 1, 2 and 4 widths and with 16, 32 and 64 distances, with 6 trials for each combination.
 
 #### Data collected
 
