@@ -154,4 +154,8 @@ We devised the experiment parameters described in the [Choice of experiment para
 
 The related data is gathered in `raw_data` in the files dated today. For each individual, the experiments are performed in the order found in the csv file above.
 
-There was an issue with the data of the first experiment, by Dorian. Due to an error in saving it, the data was lost. Dorian re-ran that experiment, but out of order.
+There was an issue with the data of the first experiment, by Dorian. Due to an error in saving it, the data was lost. Dorian re-ran that experiment, but out of order. The resulting experiment summary file is `exp_parameters/2022-11-14_experiences_corrected.csv`, which also removes the experiments that Clément could not do (not having the graphic tablet at the time) and add file names.
+
+### 2022-11-17
+
+Due to software issues, Dorian pursued some analysis with Rstudio, whereas the former work had been done with Emacs + OrgMode + Babel + ... The related analysis and discussion is in `analysis/pointingAnalysis.Rmd` and has been also [converted to html](analysis/pointingAnalysis.html) for easy visualisation.

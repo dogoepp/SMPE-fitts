@@ -1,0 +1,78 @@
+---
+title: "Analysis handmade"
+author: "Dorian Goepp"
+date: "2022-11-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Loading the experimental parameters and data
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+experiment_parameters = read.csv("../exp_parameters/2022-11-14_experiences_corrected.csv", header = T, sep = ";")
+experiment_parameters
+
+experiments = data.frame()
+
+for (i in 1:nrow(experiment_parameters)) {
+  file_path <- paste("../data/20221114_", experiment_parameters$File[i] ,"_RawData.csv", sep="")
+  experiment <- read.csv(file_path)
+  experiment$exp = as.factor(i)
+  experiment$person = experiment_parameters$Experimenter[i]
+  experiment$input.device = experiment_parameters$Input.device[i]
+  experiments <- rbind(experiments, experiment)
+}
+experiments
+
+```
+
+## Transience within trial movement time
+
+Now, we would like to see the progression of movement time within each experiment
+
+```{r}
+# experiments_aw <- experiments %>% mutate(AW = A * 2048 + W)
+# ggplot(data = experiments_aw %>% filter(exp == 3), aes(y = MT, color=AW)) +
+#   geom_point()
+```
+
+I realise that it is too tricky for me. The experimental data provided by the software does not label the data points in their order of realisation, neither does it label the sub-experiemnts (for each combination of A and W) in their order of realisation.
+
+We are therefore not in the position to check whether we should or not remove the first point of each sub-experiment.
+
+Actually, since I had looked at the data before, I suspect that it is already done in their software, as we had configured the experiments for 6 trials, but we only ever get five data per sub-experiment.
+
+## Comparison of experiments
+
+```{r}
+ggplot(experiments, aes(ID, MT, color = exp)) +
+  geom_point() +
+  geom_smooth(method='lm')
+```
+We can clearly distinguish here the three pairs of experiments. The first one (1, 2) corresponds to Dorian and his track pad. The second one (3, 4) is Clément with his track pad and the last pair (5, 6) is Dorian with his graphic tablet.
+
+This plot does not allow me to tell whether these differences are significant, but they at least are visible, which suggests that there might be at least a correlation between person / input device and the y-intercept.
+
+Also, I find there is rather many "outliers" in this data-set. Just looking at it, the observations are a bit too scattered for me to consider this model reliable. Next step would be to evaluate it with statistical tools, but I do not know how to use them.
+
+## Comparison of models
+
+```{r}
+model <- lm(MT~ID, data = experiments %>% filter(exp == 3))
+summary(model)
+```
+
+It turns out I am actually not able to read this. Can we have some help to understand it ?
+
+```{r}
+model <- lm(MT~ID, data = experiments %>% filter(exp == 5))
+summary(model)
+```
+Despite not knowing much about these models, I am surprised that one experiment yields to a much better r-squared result than another (firstly 0.7887 and then 0.4489).
+
